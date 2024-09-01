@@ -51,3 +51,4 @@ T Matrix<T, Rows, Cols>::get(int row, int col) const {
 // Explicit instantiations
 template class Matrix<float, 4, 4>;
 template class Matrix<float, 3, 3>;
+template class Matrix<float, 3, 4>;

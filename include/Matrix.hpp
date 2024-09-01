@@ -18,3 +18,4 @@ private:
 
 using Matrix4f = Matrix<float, 4, 4>;
 using Matrix3f = Matrix<float, 3, 3>;
+using Matrix3x4f = Matrix<float, 3, 4>;
