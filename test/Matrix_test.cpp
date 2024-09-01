@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iostream>
 
+using namespace matrixslayer;
+
 TEST(MatrixTest, TestToString3x3) {
 	Matrix3f m{
 		1.0f, 2.0f, 3.0f,
