@@ -34,3 +34,23 @@ TEST(MatrixTest, TestToString4x4) {
 
 	EXPECT_EQ(m.str(), oss.str());
 }
+
+TEST(MatrixTest, TestColumnMajorDataPtr) {
+	Matrix3f m{
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f,
+	};
+
+	const float* ptr = m.ptr();
+
+	EXPECT_EQ(ptr[0], 1.0f);
+	EXPECT_EQ(ptr[1], 4.0f);
+	EXPECT_EQ(ptr[2], 7.0f);
+	EXPECT_EQ(ptr[3], 2.0f);
+	EXPECT_EQ(ptr[4], 5.0f);
+	EXPECT_EQ(ptr[5], 8.0f);
+	EXPECT_EQ(ptr[6], 3.0f);
+	EXPECT_EQ(ptr[7], 6.0f);
+	EXPECT_EQ(ptr[8], 9.0f);
+}
