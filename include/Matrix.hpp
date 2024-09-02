@@ -9,6 +9,7 @@ namespace matrixslayer {
 template <typename T>
 class Matrix {
  public:
+  // Matrix object takes ownership of the store object
   Matrix(Store<T>* s, std::initializer_list<T> list);
   ~Matrix();
 
@@ -20,5 +21,8 @@ class Matrix {
  private:
   Store<T>* store;
 };
+
+using Mat = Matrix<float>;
+using Mad = Matrix<double>;  // because using doubles in OpenGL is mad indeed
 
 }  // namespace matrixslayer
