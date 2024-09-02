@@ -17,6 +17,27 @@ TEST(MatrixTest, Constructor) {
   EXPECT_EQ(m.getCols(), 2);
 }
 
+TEST(MatrixTest, CopyConstructor) {
+  Store<float>* store1 = new ColumnMajorStore<float>(2, 2);
+
+  Matrix<float> m1(store1, {
+    1.0f, 2.0f,
+    3.0f, 4.0f
+  });
+
+  Matrix<float> m2(m1);
+
+  EXPECT_EQ(m2.getRows(), 2);
+  EXPECT_EQ(m2.getCols(), 2);
+
+  std::ostringstream oss;
+  oss << "1 2 " << std::endl;
+  oss << "3 4 " << std::endl;
+
+  EXPECT_EQ(m2.str(), oss.str());
+  EXPECT_EQ(m2.str(), m1.str());
+}
+
 TEST(MatrixTest, ToString3x3) {
   Store<float>* store = new ColumnMajorStore<float>(3, 3);
 

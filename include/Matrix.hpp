@@ -11,6 +11,7 @@ class Matrix {
  public:
   // Matrix object takes ownership of the store object
   Matrix(Store<T>* s, std::initializer_list<T> list);
+  Matrix(const Matrix<T>& other);
   ~Matrix();
 
   std::string str() const;

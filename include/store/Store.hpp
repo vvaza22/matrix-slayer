@@ -11,6 +11,7 @@ class Store {
   virtual T* ptr() = 0;
   virtual unsigned int getRows() = 0;
   virtual unsigned int getCols() = 0;
+  virtual Store<T>* clone() = 0;
 };
 
 }  // namespace matrixslayer

@@ -35,6 +35,8 @@ class RowMajorStore : public Store<T> {
 
   unsigned int getCols() override { return cols; }
 
+  Store<T>* clone() override { return new RowMajorStore<T>(*this); }
+
  private:
   unsigned int rows;
   unsigned int cols;

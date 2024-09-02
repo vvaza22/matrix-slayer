@@ -16,6 +16,9 @@ Matrix<T>::Matrix(Store<T>* s, std::initializer_list<T> list) : store(s) {
 }
 
 template <typename T>
+Matrix<T>::Matrix(const Matrix<T>& other) : store(other.store->clone()) {}
+
+template <typename T>
 Matrix<T>::~Matrix() {
   delete store;
 }

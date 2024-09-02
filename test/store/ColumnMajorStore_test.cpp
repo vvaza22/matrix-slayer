@@ -11,6 +11,44 @@ TEST(ColumnMajorStoreTest, Constructor) {
   EXPECT_EQ(store.getCols(), 3);
 }
 
+TEST(ColumnMajorStoreTest, CopyConstructor) {
+  ColumnMajorStore<double> store1(2, 2);
+
+  // Set values
+  store1.set(0, 0, 1.0);
+  store1.set(0, 1, 2.0);
+  store1.set(1, 0, 3.0);
+  store1.set(1, 1, 4.0);
+
+  ColumnMajorStore<double> store2(store1);
+
+  // Get values
+  EXPECT_EQ(store2.get(0, 0), 1.0);
+  EXPECT_EQ(store2.get(0, 1), 2.0);
+  EXPECT_EQ(store2.get(1, 0), 3.0);
+  EXPECT_EQ(store2.get(1, 1), 4.0);
+}
+
+TEST(ColumnMajorStoreTest, Clone) {
+  ColumnMajorStore<double> store1(2, 2);
+
+  // Set values
+  store1.set(0, 0, 1.0);
+  store1.set(0, 1, 2.0);
+  store1.set(1, 0, 3.0);
+  store1.set(1, 1, 4.0);
+
+  Store<double> *store2 = store1.clone();
+
+  // Get values
+  EXPECT_EQ(store2->get(0, 0), 1.0);
+  EXPECT_EQ(store2->get(0, 1), 2.0);
+  EXPECT_EQ(store2->get(1, 0), 3.0);
+  EXPECT_EQ(store2->get(1, 1), 4.0);
+
+  delete store2;
+}
+
 TEST(ColumnMajorStoreTest, SetAndGet) {
   int rows = 3;
   int cols = 3;
@@ -53,24 +91,6 @@ TEST(ColumnMajorStoreTest, OutOfRange) {
   EXPECT_THROW(store.get(0, 3), std::out_of_range);
   EXPECT_THROW(store.set(3, 0, 0.0f), std::out_of_range);
   EXPECT_THROW(store.set(0, 3, 0.0f), std::out_of_range);
-}
-
-TEST(ColumnMajorStoreTest, CopyConstructor) {
-  ColumnMajorStore<double> store1(2, 2);
-
-  // Set values
-  store1.set(0, 0, 1.0);
-  store1.set(0, 1, 2.0);
-  store1.set(1, 0, 3.0);
-  store1.set(1, 1, 4.0);
-
-  ColumnMajorStore<double> store2(store1);
-
-  // Get values
-  EXPECT_EQ(store2.get(0, 0), 1.0);
-  EXPECT_EQ(store2.get(0, 1), 2.0);
-  EXPECT_EQ(store2.get(1, 0), 3.0);
-  EXPECT_EQ(store2.get(1, 1), 4.0);
 }
 
 TEST(ColumnMajorStoreTest, ColumnMajorOrder1) {
