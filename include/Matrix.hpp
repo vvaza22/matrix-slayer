@@ -1,26 +1,24 @@
 #pragma once
 
 #include <initializer_list>
+#include <store/Store.hpp>
 #include <string>
 
 namespace matrixslayer {
 
-template <typename T, int Rows, int Cols>
+template <typename T>
 class Matrix {
  public:
-  Matrix(std::initializer_list<T> list);
+  Matrix(Store<T>* s, std::initializer_list<T> list);
+  ~Matrix();
+
   std::string str() const;
-  const T* ptr() const;
+  const T* ptr() const { return store->ptr(); };
+  unsigned int getRows() const { return store->getRows(); };
+  unsigned int getCols() const { return store->getCols(); };
 
  private:
-  T data[static_cast<unsigned int>(Rows * Cols)];
-
-  void set(int row, int col, T value);
-  T get(int row, int col) const;
+  Store<T>* store;
 };
-
-using Matrix4f = Matrix<float, 4, 4>;
-using Matrix3f = Matrix<float, 3, 3>;
-using Matrix3x4f = Matrix<float, 3, 4>;
 
 }  // namespace matrixslayer
