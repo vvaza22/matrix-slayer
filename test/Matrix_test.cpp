@@ -8,7 +8,16 @@
 
 using namespace matrixslayer;
 
-TEST(MatrixTest, TestToString3x3) {
+TEST(MatrixTest, Constructor) {
+  Store<float>* store = new ColumnMajorStore<float>(1, 2);
+
+  Matrix m(store, {});
+
+  EXPECT_EQ(m.getRows(), 1);
+  EXPECT_EQ(m.getCols(), 2);
+}
+
+TEST(MatrixTest, ToString3x3) {
   Store<float>* store = new ColumnMajorStore<float>(3, 3);
 
   Matrix m(store,{
@@ -25,7 +34,7 @@ TEST(MatrixTest, TestToString3x3) {
   EXPECT_EQ(m.str(), oss.str());
 }
 
-TEST(MatrixTest, TestToString4x4) {
+TEST(MatrixTest, ToString4x4) {
   Store<float>* store = new ColumnMajorStore<float>(4, 4);
 
   Matrix m(store, {

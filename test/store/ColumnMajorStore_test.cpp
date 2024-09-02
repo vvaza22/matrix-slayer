@@ -4,6 +4,13 @@
 
 using namespace matrixslayer;
 
+TEST(ColumnMajorStoreTest, Constructor) {
+  ColumnMajorStore<float> store(2, 3);
+
+  EXPECT_EQ(store.getRows(), 2);
+  EXPECT_EQ(store.getCols(), 3);
+}
+
 TEST(ColumnMajorStoreTest, SetAndGet) {
   int rows = 3;
   int cols = 3;
