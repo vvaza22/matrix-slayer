@@ -4,7 +4,7 @@
 set -e
 
 # Define the build directory
-BUILD_DIR=out/build/
+BUILD_DIR=build/
 
 # Remove the build directory if it exists
 rm -rf $BUILD_DIR
@@ -13,4 +13,4 @@ rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 
 # Run CMake to configure the project
-cmake -S . -B $BUILD_DIR
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -S . -B $BUILD_DIR

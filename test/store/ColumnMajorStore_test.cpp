@@ -1,8 +1,6 @@
-#include <store/ColumnMajorStore.hpp>
 #include <gtest/gtest.h>
-#include <sstream>
-#include <iostream>
 #include <stdexcept>
+#include <store/ColumnMajorStore.hpp>
 
 using namespace matrixslayer;
 
@@ -12,8 +10,8 @@ TEST(ColumnMajorStoreTest, SetAndGet) {
   ColumnMajorStore<float> store(rows, cols);
 
   // Default value should be 0.0f
-  for(int row=0; row<rows; row++) {
-    for(int col=0; col<cols; col++) {
+  for (int row = 0; row < rows; row++) {
+    for (int col = 0; col < cols; col++) {
       EXPECT_EQ(store.get(row, col), 0.0f);
     }
   }
@@ -42,9 +40,7 @@ TEST(ColumnMajorStoreTest, SetAndGet) {
 }
 
 TEST(ColumnMajorStoreTest, OutOfRange) {
-  int rows = 3;
-  int cols = 3;
-  ColumnMajorStore<float> store(rows, cols);
+  ColumnMajorStore<float> store(3, 3);
 
   EXPECT_THROW(store.get(3, 0), std::out_of_range);
   EXPECT_THROW(store.get(0, 3), std::out_of_range);
@@ -53,9 +49,7 @@ TEST(ColumnMajorStoreTest, OutOfRange) {
 }
 
 TEST(ColumnMajorStoreTest, CopyConstructor) {
-  int rows = 2;
-  int cols = 2;
-  ColumnMajorStore<double> store1(rows, cols);
+  ColumnMajorStore<double> store1(2, 2);
 
   // Set values
   store1.set(0, 0, 1.0);
@@ -86,17 +80,17 @@ TEST(ColumnMajorStoreTest, ColumnMajorOrder1) {
   store.set(2, 1, 8.0f);
   store.set(2, 2, 9.0f);
 
-	const float* ptr = store.ptr();
+  const float *ptr = store.ptr();
 
-	EXPECT_EQ(ptr[0], 1.0f);
-	EXPECT_EQ(ptr[1], 4.0f);
-	EXPECT_EQ(ptr[2], 7.0f);
-	EXPECT_EQ(ptr[3], 2.0f);
-	EXPECT_EQ(ptr[4], 5.0f);
-	EXPECT_EQ(ptr[5], 8.0f);
-	EXPECT_EQ(ptr[6], 3.0f);
-	EXPECT_EQ(ptr[7], 6.0f);
-	EXPECT_EQ(ptr[8], 9.0f);
+  EXPECT_EQ(ptr[0], 1.0f);
+  EXPECT_EQ(ptr[1], 4.0f);
+  EXPECT_EQ(ptr[2], 7.0f);
+  EXPECT_EQ(ptr[3], 2.0f);
+  EXPECT_EQ(ptr[4], 5.0f);
+  EXPECT_EQ(ptr[5], 8.0f);
+  EXPECT_EQ(ptr[6], 3.0f);
+  EXPECT_EQ(ptr[7], 6.0f);
+  EXPECT_EQ(ptr[8], 9.0f);
 }
 
 TEST(ColumnMajorStoreTest, ColumnMajorOrder2) {
@@ -115,18 +109,18 @@ TEST(ColumnMajorStoreTest, ColumnMajorOrder2) {
   store.set(2, 2, 11.0f);
   store.set(2, 3, 12.0f);
 
-	const float* ptr = store.ptr();
+  const float *ptr = store.ptr();
 
-	EXPECT_EQ(ptr[0], 1.0f);
-	EXPECT_EQ(ptr[1], 5.0f);
-	EXPECT_EQ(ptr[2], 9.0f);
-	EXPECT_EQ(ptr[3], 2.0f);
-	EXPECT_EQ(ptr[4], 6.0f);
-	EXPECT_EQ(ptr[5], 10.0f);
-	EXPECT_EQ(ptr[6], 3.0f);
-	EXPECT_EQ(ptr[7], 7.0f);
-	EXPECT_EQ(ptr[8], 11.0f);
-	EXPECT_EQ(ptr[9], 4.0f);
-	EXPECT_EQ(ptr[10], 8.0f);
-	EXPECT_EQ(ptr[11], 12.0f);
+  EXPECT_EQ(ptr[0], 1.0f);
+  EXPECT_EQ(ptr[1], 5.0f);
+  EXPECT_EQ(ptr[2], 9.0f);
+  EXPECT_EQ(ptr[3], 2.0f);
+  EXPECT_EQ(ptr[4], 6.0f);
+  EXPECT_EQ(ptr[5], 10.0f);
+  EXPECT_EQ(ptr[6], 3.0f);
+  EXPECT_EQ(ptr[7], 7.0f);
+  EXPECT_EQ(ptr[8], 11.0f);
+  EXPECT_EQ(ptr[9], 4.0f);
+  EXPECT_EQ(ptr[10], 8.0f);
+  EXPECT_EQ(ptr[11], 12.0f);
 }

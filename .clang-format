@@ -1,0 +1,9 @@
+# Requires clangd 18
+BasedOnStyle: Google
+IndentWidth: 2                   # Number of spaces for indentation
+TabWidth: 2                      # Number of spaces for a tab character
+UseTab: Never                    # Use spaces instead of tabs
+SortIncludes: true               # Sort #include statements
+IncludeBlocks: Preserve          # Preserve the order of include blocks
+PointerAlignment: Left           # Align pointer with the type
+BracedInitializerIndentWidth: 2  # Initializer list indentation

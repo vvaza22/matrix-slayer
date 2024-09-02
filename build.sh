@@ -4,7 +4,7 @@
 set -e
 
 # Define the build directory
-BUILD_DIR=out/build/
+BUILD_DIR=build/
 
 # Change to the build directory and build the project
 cd $BUILD_DIR && make
