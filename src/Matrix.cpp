@@ -105,6 +105,21 @@ Matrix<T> Matrix<T>::operator/(const T scalar) const {
 }
 
 template <typename T>
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other) {
+  if (this == &other) {
+    return *this;  // Handle self-assignment
+  }
+
+  // Release existing resources
+  delete store;
+
+  // Copy the store from the other matrix
+  store = other.store->clone();
+
+  return *this;
+}
+
+template <typename T>
 std::string Matrix<T>::str() const {
   std::ostringstream oss;
 

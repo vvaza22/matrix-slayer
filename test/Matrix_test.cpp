@@ -227,3 +227,30 @@ TEST(MatrixTest, MatrixMultiplication2) {
   EXPECT_EQ(result.getCols(), 4);
   EXPECT_EQ(result.str(), oss.str());
 }
+
+TEST(MatrixTest, AssignmentOperator) {
+  Store<float>* store1 = new ColumnMajorStore<float>(2, 2);
+  Store<float>* store2 = new ColumnMajorStore<float>(2, 2);
+
+  Matrix<float> m1(store1, {
+    1.0f, 2.0f,
+    3.0f, 4.0f
+  });
+
+  Matrix<float> m2(store2, {
+    5.0f, 6.0f,
+    7.0f, 8.0f
+  });
+
+  m2 = m1;
+
+  EXPECT_EQ(m2.getRows(), 2);
+  EXPECT_EQ(m2.getCols(), 2);
+
+  std::ostringstream oss;
+  oss << "1 2 " << std::endl;
+  oss << "3 4 " << std::endl;
+
+  EXPECT_EQ(m2.str(), oss.str());
+  EXPECT_EQ(m2.str(), m1.str());
+}
