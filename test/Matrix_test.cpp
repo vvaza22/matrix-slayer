@@ -1,6 +1,6 @@
 // clang-format off
-#include <Matrix.hpp>
-#include <store/ColumnMajorStore.hpp>
+#include <matrixslayer/Matrix.hpp>
+#include <matrixslayer/store/ColumnMajorStore.hpp>
 
 #include <gtest/gtest.h>
 #include <iostream>

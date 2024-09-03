@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Matrix.hpp>
 #include <initializer_list>
-#include <store/ColumnMajorStore.hpp>
+#include <matrixslayer/Matrix.hpp>
+#include <matrixslayer/store/ColumnMajorStore.hpp>
 
 namespace matrixslayer {
 

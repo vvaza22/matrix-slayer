@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
+#include <matrixslayer/store/RowMajorStore.hpp>
 #include <stdexcept>
-#include <store/RowMajorStore.hpp>
 
 using namespace matrixslayer;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <initializer_list>
-#include <store/Store.hpp>
+#include <matrixslayer/store/Store.hpp>
 #include <string>
 
 namespace matrixslayer {

@@ -1,7 +1,7 @@
 #pragma once
 
+#include <matrixslayer/store/Store.hpp>
 #include <stdexcept>
-#include <store/Store.hpp>
 #include <vector>
 
 namespace matrixslayer {

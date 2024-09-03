@@ -1,5 +1,5 @@
-#include <MatrixFactory.hpp>
 #include <cassert>
+#include <matrixslayer/MatrixFactory.hpp>
 
 namespace matrixslayer {
 

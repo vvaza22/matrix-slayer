@@ -1,5 +1,5 @@
 // clang-format off
-#include <MatrixFactory.hpp>
+#include <matrixslayer/MatrixFactory.hpp>
 
 #include <gtest/gtest.h>
 #include <iostream>
