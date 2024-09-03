@@ -12,6 +12,7 @@ class Store {
   virtual unsigned int getRows() = 0;
   virtual unsigned int getCols() = 0;
   virtual Store<T>* clone() = 0;
+  virtual Store<T>* initialize(unsigned int rows, unsigned int cols) = 0;
 };
 
 }  // namespace matrixslayer

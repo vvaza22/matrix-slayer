@@ -32,7 +32,7 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T>& m) const {
   assert(getRows() == m.getRows());
   assert(getCols() == m.getCols());
 
-  Store<T>* result = store->clone();
+  Store<T>* result = store->initialize(getRows(), getCols());
   for (unsigned int row = 0; row < getRows(); row++) {
     for (unsigned int col = 0; col < getCols(); col++) {
       result->set(row, col, store->get(row, col) + m.store->get(row, col));
@@ -51,10 +51,53 @@ Matrix<T> Matrix<T>::operator-(const Matrix<T>& m) const {
   assert(getRows() == m.getRows());
   assert(getCols() == m.getCols());
 
-  Store<T>* result = store->clone();
+  Store<T>* result = store->initialize(getRows(), getCols());
   for (unsigned int row = 0; row < getRows(); row++) {
     for (unsigned int col = 0; col < getCols(); col++) {
       result->set(row, col, store->get(row, col) - m.store->get(row, col));
+    }
+  }
+
+  return Matrix<T>(result, {});
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& m) const {
+  assert(getCols() == m.getRows());
+
+  // Create same type of store as the first matrix
+  Store<T>* result = store->initialize(getRows(), m.getCols());
+  for (unsigned int row = 0; row < getRows(); row++) {
+    for (unsigned int col = 0; col < m.getCols(); col++) {
+      T sum = 0;
+      for (unsigned int i = 0; i < getCols(); i++) {
+        sum += store->get(row, i) * m.store->get(i, col);
+      }
+      result->set(row, col, sum);
+    }
+  }
+
+  return Matrix<T>(result, {});
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::operator*(const T scalar) const {
+  Store<T>* result = store->initialize(getRows(), getCols());
+  for (unsigned int row = 0; row < getRows(); row++) {
+    for (unsigned int col = 0; col < getCols(); col++) {
+      result->set(row, col, store->get(row, col) * scalar);
+    }
+  }
+
+  return Matrix<T>(result, {});
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::operator/(const T scalar) const {
+  Store<T>* result = store->initialize(getRows(), getCols());
+  for (unsigned int row = 0; row < getRows(); row++) {
+    for (unsigned int col = 0; col < getCols(); col++) {
+      result->set(row, col, store->get(row, col) / scalar);
     }
   }
 

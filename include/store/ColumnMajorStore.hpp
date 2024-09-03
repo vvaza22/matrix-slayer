@@ -37,6 +37,10 @@ class ColumnMajorStore : public Store<T> {
 
   Store<T>* clone() override { return new ColumnMajorStore<T>(*this); }
 
+  Store<T>* initialize(unsigned int r, unsigned int c) override {
+    return new ColumnMajorStore<T>(r, c);
+  }
+
  private:
   unsigned int rows;
   unsigned int cols;

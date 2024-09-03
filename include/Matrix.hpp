@@ -16,6 +16,9 @@ class Matrix {
 
   Matrix<T> operator+(const Matrix<T>& m) const;
   Matrix<T> operator-(const Matrix<T>& m) const;
+  Matrix<T> operator*(const Matrix<T>& m) const;
+  Matrix<T> operator*(const T scalar) const;
+  Matrix<T> operator/(const T scalar) const;
 
   std::string str() const;
   const T* ptr() const { return store->ptr(); };
