@@ -73,3 +73,56 @@ TEST(MatrixTest, ToString4x4) {
 
   EXPECT_EQ(m.str(), oss.str());
 }
+
+TEST(MatrixTest, Addition) {
+  Store<float>* store1 = new ColumnMajorStore<float>(2, 2);
+  Store<float>* store2 = new ColumnMajorStore<float>(2, 2);
+
+  Matrix<float> m1(store1, {
+    1.0f, 2.0f,
+    3.0f, 4.0f
+  });
+
+  Matrix<float> m2(store2, {
+    5.0f, 6.0f,
+    7.0f, 8.0f
+  });
+
+  Matrix<float> result = m1 + m2;
+
+  std::ostringstream oss;
+  oss << "6 8 " << std::endl;
+  oss << "10 12 " << std::endl;
+
+  EXPECT_EQ(result.getRows(), 2);
+  EXPECT_EQ(result.getCols(), 2);
+  EXPECT_EQ(result.str(), oss.str());
+}
+
+TEST(MatrixTest, Subtraction) {
+  Store<float>* store1 = new ColumnMajorStore<float>(3, 2);
+  Store<float>* store2 = new ColumnMajorStore<float>(3, 2);
+
+  Matrix<float> m1(store1, {
+    1.0f, 2.0f,
+    3.0f, 4.0f,
+    5.0f, 6.0f
+  });
+
+  Matrix<float> m2(store2, {
+    7.0f, 8.0f,
+    9.0f, 10.0f,
+    11.0f, 12.0f
+  });
+
+  Matrix<float> result = m1 - m2;
+
+  std::ostringstream oss;
+  oss << "-6 -6 " << std::endl;
+  oss << "-6 -6 " << std::endl;
+  oss << "-6 -6 " << std::endl;
+
+  EXPECT_EQ(result.getRows(), 3);
+  EXPECT_EQ(result.getCols(), 2);
+  EXPECT_EQ(result.str(), oss.str());
+}

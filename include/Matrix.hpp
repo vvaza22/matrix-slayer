@@ -14,6 +14,9 @@ class Matrix {
   Matrix(const Matrix<T>& other);
   ~Matrix();
 
+  Matrix<T> operator+(const Matrix<T>& m) const;
+  Matrix<T> operator-(const Matrix<T>& m) const;
+
   std::string str() const;
   const T* ptr() const { return store->ptr(); };
   unsigned int getRows() const { return store->getRows(); };
