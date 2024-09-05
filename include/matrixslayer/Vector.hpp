@@ -32,4 +32,7 @@ private:
   std::vector<T> data;
 };
 
+using Vec = Vector<float>;
+using Ved = Vector<double>;
+
 } // namespace matrixslayer
