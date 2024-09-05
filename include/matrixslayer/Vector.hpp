@@ -10,6 +10,7 @@ template <typename T>
 class Vector {
 public:
   Vector(std::initializer_list<T> list);
+  Vector(const Vector<T>& other);
 
   unsigned long int size() const;
   std::string str() const;

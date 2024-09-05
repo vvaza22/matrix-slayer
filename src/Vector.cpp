@@ -8,6 +8,9 @@ template <typename T>
 Vector<T>::Vector(std::initializer_list<T> list) : data(list) {}
 
 template <typename T>
+Vector<T>::Vector(const Vector<T>& other) : data(other.data) {}
+
+template <typename T>
 unsigned long int Vector<T>::size() const {
   return data.size();
 }
