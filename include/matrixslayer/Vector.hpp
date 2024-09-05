@@ -9,6 +9,7 @@ namespace matrixslayer {
 template <typename T>
 class Vector {
 public:
+  Vector() = default;
   Vector(std::initializer_list<T> list);
   Vector(const Vector<T>& other);
 
