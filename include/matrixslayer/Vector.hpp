@@ -21,6 +21,7 @@ public:
   T operator*(const Vector<T>& other) const;
   // Cross product
   Vector<T> operator^(const Vector<T>& other) const;
+  T operator[](unsigned int index) const;
   T length() const;
 
   unsigned long int size() const;

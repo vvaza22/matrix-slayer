@@ -161,3 +161,19 @@ TEST(VectorTest, CrossProduct2) {
   EXPECT_EQ(result * v1, 0);
   EXPECT_EQ(result * v2, 0);
 }
+
+TEST(VectorTest, IndexOperator) {
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  
+  EXPECT_EQ(v1[0], 1);
+  EXPECT_EQ(v1[1], 2);
+  EXPECT_EQ(v1[2], 3);
+}
+
+TEST(VectorTest, IndexOperator_Float) {
+  matrixslayer::Vector<float> v1({4.5, 6.7, 8.9});
+  
+  EXPECT_EQ(v1[0], 4.5f);
+  EXPECT_EQ(v1[1], 6.7f);
+  EXPECT_EQ(v1[2], 8.9f);
+}

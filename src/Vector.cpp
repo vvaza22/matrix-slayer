@@ -95,6 +95,12 @@ Vector<T> Vector<T>::operator^(const Vector<T>& other) const {
 }
 
 template <typename T>
+T Vector<T>::operator[](unsigned int index) const {
+  assert(index < data.size());
+  return data[index];
+}
+
+template <typename T>
 std::string Vector<T>::str() const {
   std::ostringstream oss;
   oss << "[";
