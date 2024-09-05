@@ -12,6 +12,13 @@ public:
   Vector(std::initializer_list<T> list);
   Vector(const Vector<T>& other);
 
+  Vector<T>& operator=(const Vector<T>& other);
+  Vector<T> operator+(const Vector<T>& other) const;
+  Vector<T> operator-(const Vector<T>& other) const;
+  Vector<T> operator*(const T scalar) const;
+  Vector<T> operator/(const T scalar) const;
+  T operator*(const Vector<T>& other) const;
+
   unsigned long int size() const;
   std::string str() const;
   const T* ptr() const;
