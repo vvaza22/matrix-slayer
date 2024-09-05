@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <cassert>
+#include <cmath>
 
 namespace matrixslayer {
 
@@ -74,6 +75,26 @@ T Vector<T>::operator*(const Vector<T>& other) const {
 }
 
 template <typename T>
+T Vector<T>::length() const {
+  T result = 0;
+  for (unsigned int i = 0; i < data.size(); i++) {
+    result += data[i] * data[i];
+  }
+  return std::sqrt(result);
+}
+
+template <typename T>
+Vector<T> Vector<T>::operator^(const Vector<T>& other) const {
+  assert(data.size() == 3);
+  assert(other.data.size() == 3);
+
+  Vector<T> result({data[1] * other.data[2] - data[2] * other.data[1],
+                    data[2] * other.data[0] - data[0] * other.data[2],
+                    data[0] * other.data[1] - data[1] * other.data[0]});
+  return result;
+}
+
+template <typename T>
 std::string Vector<T>::str() const {
   std::ostringstream oss;
   oss << "[";
@@ -93,7 +114,6 @@ const T* Vector<T>::ptr() const {
 }
 
 // Explicit instantiation
-template class Vector<int>;
 template class Vector<float>;
 template class Vector<double>;
 

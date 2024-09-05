@@ -2,11 +2,11 @@
 #include <matrixslayer/Vector.hpp>
 
 TEST(VectorTest, Initialization) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
+  matrixslayer::Vector<double> v1({1, 2, 3});
   EXPECT_EQ(v1.size(), 3);
   EXPECT_EQ(v1.str(), "[1, 2, 3]");
 
-  const int* ptr1 = v1.ptr();
+  const double* ptr1 = v1.ptr();
   EXPECT_EQ(ptr1[0], 1);
   EXPECT_EQ(ptr1[1], 2);
   EXPECT_EQ(ptr1[2], 3);
@@ -23,8 +23,8 @@ TEST(VectorTest, Initialization) {
 }
 
 TEST(VectorTest, CopyConstructor) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2(v1);
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2(v1);
 
   EXPECT_EQ(v2.size(), v1.size());
   EXPECT_EQ(v2.str(), v1.str());
@@ -41,37 +41,37 @@ TEST(VectorTest, CopyConstructor_Float) {
 }
 
 TEST(VectorTest, Addition) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2({4, 5, 6});
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 5, 6});
 
-  matrixslayer::Vector<int> sum = v1 + v2;
+  matrixslayer::Vector<double> sum = v1 + v2;
   EXPECT_EQ(sum.size(), v1.size());
   EXPECT_EQ(sum.str(), "[5, 7, 9]");
 }
 
 TEST(VectorTest, Subtraction) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2({4, 10, 0});
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 10, 0});
 
-  matrixslayer::Vector<int> diff = v2 - v1;
+  matrixslayer::Vector<double> diff = v2 - v1;
   EXPECT_EQ(diff.size(), v2.size());
   EXPECT_EQ(diff.str(), "[3, 8, -3]");
 }
 
 TEST(VectorTest, MultiplicationByScalar) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  int scalar = 2;
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  double scalar = 2;
 
-  matrixslayer::Vector<int> result = v1 * scalar;
+  matrixslayer::Vector<double> result = v1 * scalar;
   EXPECT_EQ(result.size(), v1.size());
   EXPECT_EQ(result.str(), "[2, 4, 6]");
 }
 
 TEST(VectorTest, DivisionByScalar) {
-  matrixslayer::Vector<int> v1({4, 6, 8});
-  int scalar = 2;
+  matrixslayer::Vector<double> v1({4, 6, 8});
+  double scalar = 2;
 
-  matrixslayer::Vector<int> result = v1 / scalar;
+  matrixslayer::Vector<double> result = v1 / scalar;
   EXPECT_EQ(result.size(), v1.size());
   EXPECT_EQ(result.str(), "[2, 3, 4]");
 }
@@ -86,10 +86,10 @@ TEST(VectorTest, DivisionByScalar_Float) {
 }
 
 TEST(VectorTest, DotProduct) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2({4, 5, 6});
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 5, 6});
 
-  int dotProduct = v1 * v2;
+  double dotProduct = v1 * v2;
   EXPECT_EQ(dotProduct, 32);
 }
 
@@ -102,16 +102,16 @@ TEST(VectorTest, DotProduct_Float) {
 }
 
 TEST(VectorTest, DotProduct_Zero) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2({0, 0, 0});
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({0, 0, 0});
 
-  int dotProduct = v1 * v2;
+  double dotProduct = v1 * v2;
   EXPECT_EQ(dotProduct, 0);
 }
 
 TEST(VectorTest, AssignmentOperator) {
-  matrixslayer::Vector<int> v1({1, 2, 3});
-  matrixslayer::Vector<int> v2({4, 5, 6});
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 5, 6});
 
   v2 = v1;
 
@@ -129,4 +129,35 @@ TEST(VectorTest, AssignmentOperator_Float) {
   EXPECT_EQ(v2.size(), v1.size());
   EXPECT_EQ(v2.str(), v1.str());
   EXPECT_NE(v2.ptr(), v1.ptr());
+}
+
+TEST(VectorTest, Length) {
+  matrixslayer::Vector<float> v1({3, 4});
+  float length1 = v1.length();
+  EXPECT_DOUBLE_EQ(length1, 5.0f);
+
+  matrixslayer::Vector<double> v2({0, 2});
+  double length2 = v2.length();
+  EXPECT_DOUBLE_EQ(length2, 2.0);
+}
+
+TEST(VectorTest, CrossProduct1) {
+  matrixslayer::Vector<double> v1({1, 0, 0});
+  matrixslayer::Vector<double> v2({0, 1, 0});
+
+  matrixslayer::Vector<double> result = v1 ^ v2;
+  EXPECT_EQ(result.size(), 3);
+  EXPECT_EQ(result.str(), "[0, 0, 1]");
+}
+
+TEST(VectorTest, CrossProduct2) {
+  matrixslayer::Vector<float> v1({1, 2, 3});
+  matrixslayer::Vector<float> v2({4, 5, 6});
+  matrixslayer::Vector<float> result = v1 ^ v2;
+
+  EXPECT_EQ(result.size(), 3);
+  EXPECT_EQ(result.str(), "[-3, 6, -3]");
+
+  EXPECT_EQ(result * v1, 0);
+  EXPECT_EQ(result * v2, 0);
 }

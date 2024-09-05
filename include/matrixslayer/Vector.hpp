@@ -17,7 +17,11 @@ public:
   Vector<T> operator-(const Vector<T>& other) const;
   Vector<T> operator*(const T scalar) const;
   Vector<T> operator/(const T scalar) const;
+  // Dot product
   T operator*(const Vector<T>& other) const;
+  // Cross product
+  Vector<T> operator^(const Vector<T>& other) const;
+  T length() const;
 
   unsigned long int size() const;
   std::string str() const;
