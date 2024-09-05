@@ -46,6 +46,31 @@ Vector<T> Vector<T>::operator-(const Vector<T>& other) const {
 }
 
 template <typename T>
+Vector<T>& Vector<T>::operator+=(const Vector<T>& other) {
+  assert(size() == other.size());
+
+  for (unsigned int i = 0; i < data.size(); i++) {
+    data[i] += other.data[i];
+  }
+  return *this;
+}
+
+template <typename T>
+Vector<T>& Vector<T>::operator-=(const Vector<T>& other) {
+  assert(size() == other.size());
+
+  for (unsigned int i = 0; i < data.size(); i++) {
+    data[i] -= other.data[i];
+  }
+  return *this;
+}
+
+template <typename T>
+Vector<T> Vector<T>::operator-() const {
+  return *this * (-1);
+}
+
+template <typename T>
 Vector<T> Vector<T>::operator*(const T scalar) const {
   Vector<T> result(*this);
   for (unsigned int i = 0; i < data.size(); i++) {

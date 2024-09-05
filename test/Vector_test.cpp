@@ -177,3 +177,37 @@ TEST(VectorTest, IndexOperator_Float) {
   EXPECT_EQ(v1[1], 6.7f);
   EXPECT_EQ(v1[2], 8.9f);
 }
+
+TEST(VectorTest, UnaryMinus) {
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> result = -v1;
+
+  EXPECT_EQ(result.size(), 3);
+  EXPECT_EQ(result.str(), "[-1, -2, -3]");
+}
+
+TEST(VectorTest, UnaryMinus_Float) {
+  matrixslayer::Vector<float> v1({4.5, 6.7, 8.9});
+  matrixslayer::Vector<float> result = -v1;
+
+  EXPECT_EQ(result.size(), 3);
+  EXPECT_EQ(result.str(), "[-4.5, -6.7, -8.9]");
+}
+
+TEST(VectorTest, CompoundAddition) {
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 5, 6});
+
+  v1 += v2;
+  EXPECT_EQ(v1.size(), 3);
+  EXPECT_EQ(v1.str(), "[5, 7, 9]");
+}
+
+TEST(VectorTest, CompoundSubtraction) {
+  matrixslayer::Vector<double> v1({1, 2, 3});
+  matrixslayer::Vector<double> v2({4, 5, 6});
+
+  v2 -= v1;
+  EXPECT_EQ(v2.size(), 3);
+  EXPECT_EQ(v2.str(), "[3, 3, 3]");
+}
